@@ -1,3 +1,4 @@
+import { Movie } from "@prisma/client";
 import { AppError } from "../../../../errors/AppErros";
 import { prisma } from "../../../../prisma/client";
 
@@ -9,8 +10,7 @@ export class UpdateMovieUseCase {
     title,
     duration,
     release_date,
-  }: UpdateMovieDTO): Promise<void> {
-
+  }: UpdateMovieDTO): Promise<Movie> {
     //Verificar se o filme existe
     const MovieAlreadyExists = await prisma.movie.findUnique({
       where: {
@@ -33,5 +33,7 @@ export class UpdateMovieUseCase {
         release_date,
       },
     });
+
+    return updatedMovie
   }
 }
