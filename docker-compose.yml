@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+  postgres_app:
+    container_name: postgres_apiyt
+    hostname: postgres_apiyt
+    image: postgres:latest
+    volumes:
+      - C:\Users\Elias\Documents\BaseDeDados\Postgres\cursoyt:/var/lib/postgresql/data # Substitua pelo caminho desejado para persistência dos dados
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: api_yt
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      PGDATA: /var/lib/postgresql/data/pgdata # Caminho interno para os dados do PostgreSQL
+      TZ: America/Sao_Paulo # Fuso horário, se necessário

@@ -1,0 +1,20 @@
+import { Router } from "express";
+import { CreateMovieControler } from "../modules/movies/useCases/createMovie/createMovieControler"; 
+import { CreateMovieRentController } from "../modules/movies/useCases/createMovieRent/CreateMovieRentController";
+import { GetMoviesByReleaseDateController } from "../modules/movies/useCases/getMoviesByReleaseDate/GetMoviesByReleaseDateControler";
+import { UpdateMovieControler } from "../modules/movies/useCases/updateMovie/UpdateMovieControler";
+
+
+const createMovieControler = new CreateMovieControler();
+const createMovieRentController = new CreateMovieRentController();
+const getMoviesByReleaseDateController = new GetMoviesByReleaseDateController()
+const updateMovieControler = new UpdateMovieControler()
+
+const movieRoutes = Router();
+
+movieRoutes.post("/", createMovieControler.handle);
+movieRoutes.patch("/:id", updateMovieControler.handle);
+movieRoutes.get("/release", getMoviesByReleaseDateController.handle);
+movieRoutes.post("/rent", createMovieRentController.handle);
+
+export { movieRoutes };
